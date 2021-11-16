@@ -1,6 +1,6 @@
-class media
+class Media
 {
   public:
-  char getTitle();
-  char getYear();
+  char* getTitle();
+  int getYear();
 };

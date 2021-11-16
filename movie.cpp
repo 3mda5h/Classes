@@ -8,16 +8,16 @@ using namespace std;
 class Movie : public Media
 {
 public:
-  char director[100];
+  director = new char[100];
   int rating; //out of 5?
   int duration; //in minutes 
   
-  char getDirector()
+  char* Movie::getDirector()
   {
     return director; 
   }
 
-  int getRating()
+  int Movie::getRating()
   {
     return rating;
   }

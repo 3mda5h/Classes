@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstring>
+#include "media.cpp"
+#include "media.h"
 
 using namespace std;
 
@@ -16,7 +18,28 @@ int main()
     }
     if(strcmp(input, "ADD") == 0)
     {
+      Media* media = new Media();
+      cout << "enter media type (movie, music, or videogame)" << endl;
+      cin.get(input, 100);
+      do
+      {
+        if(strcmp(input, "movie") == 0)
+        {
+          
+        }
+        if(strcmp(input, "music") == 0)
+        {
 
+        }
+        if(strcmp(input, "videogame") == 0)
+        {
+
+        }
+        else
+        {
+
+        }
+      } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0));
     }
     if(strcmp(input, "SEARCH") == 0)
     {

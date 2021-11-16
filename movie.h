@@ -1,7 +1,7 @@
 class movie
 {
   public:
-  char getDirector();
+  *char getDirector();
   int getRating();
   int getDuration();
 };

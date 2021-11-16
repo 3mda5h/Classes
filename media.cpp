@@ -6,15 +6,15 @@
 
 using namespace std;
 
-class media
+class Media
 {
   public:
-  char title[100];
+  title = new char[100];
   int year;
 
-  char getTitle()
+  *char getTitle()
   {
-    return title; //how to return whole array not just one char??
+    return title; 
   }
 
   int getYear()
