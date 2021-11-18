@@ -1,23 +1,23 @@
 //title, artist, year, duration, publisher.
 #include <iostream>
-#include "media.cpp"
-#include "music.h"
+#include "Media.cpp"
+#include "Music.h"
 
 using namespace std;
 
 class Music : public Media
 {
 public:
-  char publisher[100];
-  char artist[100];
+  publisher = new char[100];
+  artist = new char[100];
   float duration; //min.sec 
   
-  char getPublisher()
+  char* getPublisher()
   {
     return publisher; 
   }
 
-  char getArtist()
+  char* getArtist()
   {
     return artist;
   }

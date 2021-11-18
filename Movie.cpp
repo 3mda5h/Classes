@@ -1,7 +1,7 @@
 //title, director, year, duration, rating
 #include <iostream>
-#include "media.cpp"
-#include "movie.h"
+#include "Media.cpp"
+#include "Movie.h"
 
 using namespace std;
 

@@ -1,17 +1,17 @@
 //title, year, publisher, rating.
 #include <iostream>
-#include "media.cpp"
-#include "videogames.h"
+#include "Media.cpp"
+#include "Videogame.h"
 
 using namespace std;
 
-class Videogames : public Media
+class Videogame : public Media
 {
 public:
-  char publisher[100];
+  publisher = new char[100];
   int rating; 
   
-  char getPublisher()
+  char* getPublisher()
   {
     return publisher;  
   }
