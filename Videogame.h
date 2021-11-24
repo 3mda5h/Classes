@@ -1,7 +1,10 @@
 #ifndef VIDEOGAME_H
 #define VIDEOGAME_H
 
-class Videogame
+#include <iostream>
+#include "Media.h"
+
+class Videogame : public Media
 {
   public:
     char* getPublisher();

@@ -1,13 +1,17 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
-class movie
+#include <iostream>
+#include "Media.h"
+
+using namespace std;
+
+class Movie : public Media
 {
   public:
     char* getDirector();
     int getRating();
     int getDuration();
-  private:
     char* director;
     int rating;
     int duration;

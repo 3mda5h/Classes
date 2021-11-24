@@ -1,7 +1,12 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
-class Music
+#include <iostream>
+#include "Media.h"
+
+using namespace std;
+
+class Music : public Media
 {
   public:
     char* getPublisher();

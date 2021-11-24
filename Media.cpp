@@ -1,8 +1,5 @@
 #include <iostream>
 #include "Media.h"
-#include "Movie.h"
-#include "Music.h"
-#include "Videogame.h"
 
 using namespace std;
 

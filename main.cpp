@@ -1,14 +1,20 @@
 #include <iostream>
 #include <cstring>
-#include "Media.cpp"
+#include <vector>
 #include "Media.h"
+#include "Movie.h"
+#include "Music.h"
+#include "Videogame.h"
 
 using namespace std;
+
+void newMovie();
 
 int main() 
 {
   bool running = true;
   char input[100];
+  vector<Media*> media;
   do
   {
     cin.get(input, 100);
@@ -18,26 +24,21 @@ int main()
     }
     if(strcmp(input, "ADD") == 0)
     {
-      Media* media = new Media();
       cout << "enter media type (movie, music, or videogame)" << endl;
       cin.get(input, 100);
       do
       {
         if(strcmp(input, "movie") == 0)
         {
-          
+          newMovie();
         }
         if(strcmp(input, "music") == 0)
         {
-
+          //Music* music = new Music();
         }
         if(strcmp(input, "videogame") == 0)
         {
-
-        }
-        else
-        {
-
+          //Videogame* videogame = new Videogame();
         }
       } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0));
     }
@@ -53,5 +54,30 @@ int main()
     {
       running = false;
     }
-  }while(running == true);
+  } while(running == true);
 } 
+
+void newMovie()
+{
+  Movie* movie = new Movie();
+  cout << "enter movie title" << endl;
+  cin >> movie->title;
+  cout << "enter year" << endl;
+  cin >> movie->year;
+  cout << "enter director" << endl;
+  cin >> movie->director;
+  cout << "enter rating" << endl;
+  cin >> movie->rating;
+  cout << "enter duration (minutes)" << endl;
+  cin >> movie->duration;
+}
+
+void newMusic()
+{
+
+}
+
+void newVideogame()
+{
+
+}
