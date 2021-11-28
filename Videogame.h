@@ -7,11 +7,11 @@
 class Videogame : public Media
 {
   public:
+    Videogame();
     char* getPublisher();
-    int getRating();
-  private:
+    char* getRating();
     char* publisher;
-    int rating;
+    char* rating;
 };
 
 #endif

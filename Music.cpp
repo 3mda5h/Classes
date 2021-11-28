@@ -8,7 +8,7 @@ Music::Music()
 {
   publisher = new char[100];
   artist = new char[100];
-  float duration; //min.sec 
+  duration = new char[100]; //min:sec 
 }
   
 char* Music::getPublisher()
@@ -21,7 +21,7 @@ char* Music::getArtist()
   return artist;
 }
 
-float Music::getDuration()
+char* Music::getDuration()
 {
   return duration;
 }

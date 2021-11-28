@@ -9,9 +9,9 @@ class Media
   public:
     Media();
     char* getTitle();
-    int getYear();
+    char* getYear();
     char* title;
-    int year;
+    char* year;
 };
 
 #endif

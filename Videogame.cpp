@@ -7,7 +7,7 @@ using namespace std;
 Videogame::Videogame()
 {
   publisher = new char[100];
-  int rating; 
+  rating = new char[100]; 
 }
   
 char* Videogame::getPublisher()
@@ -15,7 +15,7 @@ char* Videogame::getPublisher()
   return publisher;  
 }
 
-int Videogame::getRating()
+char* Videogame::getRating()
 {
   return rating;
 }

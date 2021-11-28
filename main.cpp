@@ -8,7 +8,11 @@
 
 using namespace std;
 
-void newMovie();
+void newMovie(vector<Media*> &media);
+void newMusic(vector<Media*> &media);
+void newVideogame(vector<Media*> &media);
+void searchMedia(vector<Media*> media);
+void printMedia(Media* media);
 
 int main() 
 {
@@ -17,34 +21,35 @@ int main()
   vector<Media*> media;
   do
   {
-    cin.get(input, 100);
+    cin >> input;
     for(int i = 0; i > strlen(input); i++)
     {
       input[i] = toupper(input[i]);
     }
     if(strcmp(input, "ADD") == 0)
     {
-      cout << "enter media type (movie, music, or videogame)" << endl;
-      cin.get(input, 100);
       do
       {
+        cout << "enter media type (movie, music, or videogame)" << endl;
+        cin >> input;
         if(strcmp(input, "movie") == 0)
         {
-          newMovie();
+          newMovie(media);
         }
         if(strcmp(input, "music") == 0)
         {
-          //Music* music = new Music();
+          newMusic(media);
         }
         if(strcmp(input, "videogame") == 0)
         {
-          //Videogame* videogame = new Videogame();
+          newVideogame(media);
         }
       } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0));
+      cout << "media added to database" << endl;
     }
     if(strcmp(input, "SEARCH") == 0)
     {
-
+      searchMedia(media);
     }
     if(strcmp(input, "DELETE") == 0)
     {
@@ -57,7 +62,7 @@ int main()
   } while(running == true);
 } 
 
-void newMovie()
+void newMovie(vector<Media*> &media)
 {
   Movie* movie = new Movie();
   cout << "enter movie title" << endl;
@@ -70,14 +75,58 @@ void newMovie()
   cin >> movie->rating;
   cout << "enter duration (minutes)" << endl;
   cin >> movie->duration;
+  media.push_back(movie);
 }
 
-void newMusic()
+void newMusic(vector<Media*> &media)
 {
-
+  Music* music = new Music();
+  cout << "enter music title" << endl;
+  cin >> music->title;
+  cout << "enter year" << endl;
+  cin >> music->year;
+  cout << "enter publisher" << endl;
+  cin >> music->publisher;
+  cout << "enter artist" << endl;
+  cin >> music->artist;
+  cout << "enter duration (minutes)" << endl;
+  cin >> music->duration;
+  media.push_back(music);
 }
 
-void newVideogame()
+void newVideogame(vector<Media*> &media)
 {
+  Videogame* vg = new Videogame();
+  cout << "enter videogame title" << endl;
+  cin >> vg->title;
+  cout << "enter year" << endl;
+  cin >> vg->year;
+  cout << "enter publisher" << endl;
+  cin >> vg->publisher;
+  cout << "enter rating" << endl;
+  cin >> vg->rating;
+  media.push_back(vg);
+}
 
+void searchMedia(vector<Media*> media)
+{
+  char input[100];
+  cout << "enter title or date" << endl;
+  cin >> input;
+  for(int i = 0; i < media.size(); i++)
+  {
+    if(strcmp(media[i]->getTitle(), input) == 0)
+    {
+      printMedia(media[i]);
+    }
+    if(strcmp(media[i]->getTitle(), input) == 0)
+    {
+      printMedia(media[i]);
+    }
+  }
+}
+
+void printMedia(Media* media)
+{
+  cout << media->getTitle() << media->getYear() << endl;
 }

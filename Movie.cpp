@@ -7,8 +7,8 @@ using namespace std;
 Movie::Movie()
 {
   director = new char[100];
-  int rating; //out of 5?
-  int duration; //in minutes 
+  rating = new char[100]; //out of 5?
+  duration = new char[100]; //in minutes 
 }
 
 char* Movie::getDirector()
@@ -16,12 +16,12 @@ char* Movie::getDirector()
   return director; 
 }
 
-int Movie::getRating()
+char* Movie::getRating()
 {
   return rating;
 }
 
-int Movie::getDuration()
+char* Movie::getDuration()
 {
   return duration;
 }

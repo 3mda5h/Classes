@@ -6,7 +6,7 @@ using namespace std;
 Media::Media()
 {
   title = new char[100];
-  int year;
+  year = new char[100];
 }
 
 char* Media::getTitle()
@@ -14,7 +14,7 @@ char* Media::getTitle()
   return title; 
 }
 
-int Media::getYear()
+char* Media::getYear()
 {
   return year;
 }

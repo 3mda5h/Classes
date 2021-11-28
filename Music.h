@@ -9,13 +9,13 @@ using namespace std;
 class Music : public Media
 {
   public:
+    Music();
     char* getPublisher();
     char* getArtist();
-    float getDuration();
-  private:
+    char* getDuration();
     char* publisher;
     char* artist;
-    float duration;
+    char* duration;
 };
 
 #endif

@@ -9,12 +9,13 @@ using namespace std;
 class Movie : public Media
 {
   public:
+    Movie();
     char* getDirector();
-    int getRating();
-    int getDuration();
+    char* getRating();
+    char* getDuration();
     char* director;
-    int rating;
-    int duration;
+    char* rating;
+    char* duration;
 };
 
 #endif
