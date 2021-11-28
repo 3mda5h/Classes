@@ -16,6 +16,7 @@ void newMusic(vector<Media*> &media);
 void newVideogame(vector<Media*> &media);
 void searchMedia(vector<Media*> media);
 void printMedia(Media* media);
+void deleteMedia(vector<Media*> &media);
 
 int main() 
 {
@@ -57,7 +58,7 @@ int main()
     }
     if(strcmp(input, "DELETE") == 0)
     {
-
+      deleteMedia(media);
     }
     if(strcmp(input, "QUIT") == 0)
     {
@@ -115,11 +116,11 @@ void newVideogame(vector<Media*> &media)
   media.push_back(vg);
 }
 
-//searchs media vector for matching title and year
+//searchs media vector for matching title or year
 void searchMedia(vector<Media*> media)
 {
   char input[100];
-  cout << "enter title or date to search by" << endl;
+  cout << "enter title or year to search by" << endl;
   cin >> input;
   cout << "search results:" << endl;
   for(int i = 0; i < media.size(); i++)
@@ -134,5 +135,40 @@ void searchMedia(vector<Media*> media)
 //prints out the information of a media type
 void printMedia(Media* media)
 {
-  cout << media->getTitle() << ", " << media->getYear() << endl;
+  cout << media->getTitle() << ", " << media->getYear() << ", " << endl;
+}
+
+//deletes media matching title or year
+void deleteMedia(vector<Media*> &media)
+{
+  char input[100];
+  vector<Media*> deletelist;
+  cout << "enter title or year of media" << endl;
+  cin >> input;
+  cout << "results:" << endl;
+  for(int i = 0; i < media.size(); i++)
+  {
+    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0))
+    {
+      printMedia(media[i]);
+      deletelist.push_back(media[i]);
+    }
+  }
+  do
+  {
+    cout << "are you sure you want to delete the above media? (yes/no)" << endl;
+    cin >> input;
+    if(strcmp(input, "yes") == 0)
+    {
+      for(int i = 0; i < deletelist.size(); i++)
+      {
+        delete deletelist[i];
+      }
+      cout << "media deleted" << endl;
+    }
+    if(strcmp(input, "no") == 0)
+    {
+      return;
+    }
+  } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0));
 }

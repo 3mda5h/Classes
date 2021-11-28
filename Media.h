@@ -8,6 +8,7 @@ class Media
 {
   public:
     Media();
+    ~Media();
     char* getTitle();
     char* getYear();
     char* title;

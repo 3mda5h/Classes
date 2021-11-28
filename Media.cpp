@@ -9,6 +9,11 @@ Media::Media()
   year = new char[100];
 }
 
+Media::~Media()
+{
+  delete[] title;
+  delete[] year;
+}
 char* Media::getTitle()
 {
   return title; 
