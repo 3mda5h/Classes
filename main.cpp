@@ -1,4 +1,4 @@
-//Classes and inheritance project - a media data base of videogames, movies, and music. User can add, search, and delete media. 
+//Classes and inheritance project - a database of videogames, movies, and music. User can add, search, and delete media. 
 //Emily MacPherson, 11/28/21
 
 #include <iostream>
@@ -27,6 +27,7 @@ int main()
   {
     cout << "enter ADD, SEARCH, DELETE, or QUIT" << endl;
     cin >> input;
+    //convert input to all uppercase so it's not case sensitive
     for(int i = 0; i < strlen(input); i++)
     {
       input[i] = toupper(input[i]);
@@ -49,7 +50,7 @@ int main()
         {
           newVideogame(media);
         }
-      } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0));
+      } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0)); //keeps prompting user until valid input given
       cout << "media added to database" << endl;
     }
     if(strcmp(input, "SEARCH") == 0)
@@ -148,27 +149,36 @@ void deleteMedia(vector<Media*> &media)
   cout << "results:" << endl;
   for(int i = 0; i < media.size(); i++)
   {
+    //if title or year match search term
     if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0))
     {
       printMedia(media[i]);
       deletelist.push_back(media[i]);
     }
   }
-  do
+  if(deletelist.size() > 0) //if delete list is not empty
   {
-    cout << "are you sure you want to delete the above media? (yes/no)" << endl;
-    cin >> input;
-    if(strcmp(input, "yes") == 0)
+    do
     {
-      for(int i = 0; i < deletelist.size(); i++)
+      cout << "are you sure you want to delete the above media? (yes/no)" << endl;
+      cin >> input;
+      if(strcmp(input, "yes") == 0)
       {
-        delete deletelist[i];
+        for(int i = 0; i < deletelist.size(); i++)
+        {
+          delete deletelist[i];
+        }
+        cout << "media deleted" << endl;
       }
-      cout << "media deleted" << endl;
-    }
-    if(strcmp(input, "no") == 0)
-    {
-      return;
-    }
-  } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0));
+      if(strcmp(input, "no") == 0)
+      {
+        return;
+      }
+    } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0));
+  }
+  else
+  {
+    cout << "no media found" << endl;
+    return;
+  }
 }
