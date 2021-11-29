@@ -20,6 +20,11 @@ char* Videogame::getRating()
   return rating;
 }
 
+void Videogame::printInfo()
+{
+  cout << title << ", " << year << ", published by " << publisher << ", rated " << rating << " star(s)" << endl; 
+}
+
 
 
 

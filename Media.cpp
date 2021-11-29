@@ -23,3 +23,8 @@ char* Media::getYear()
 {
   return year;
 }
+
+void Media::printInfo()
+{
+  cout << title << ", " << year << endl;
+}

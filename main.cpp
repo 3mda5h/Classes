@@ -15,7 +15,6 @@ void newMovie(vector<Media*> &media);
 void newMusic(vector<Media*> &media);
 void newVideogame(vector<Media*> &media);
 void searchMedia(vector<Media*> media);
-void printMedia(Media* media);
 void deleteMedia(vector<Media*> &media);
 
 int main() 
@@ -78,7 +77,7 @@ void newMovie(vector<Media*> &media)
   cin >> movie->year;
   cout << "enter director" << endl;
   cin >> movie->director;
-  cout << "enter rating" << endl;
+  cout << "enter rating (1-5)" << endl;
   cin >> movie->rating;
   cout << "enter duration (minutes)" << endl;
   cin >> movie->duration;
@@ -97,7 +96,7 @@ void newMusic(vector<Media*> &media)
   cin >> music->publisher;
   cout << "enter artist" << endl;
   cin >> music->artist;
-  cout << "enter duration (minutes)" << endl;
+  cout << "enter duration (min:sec)" << endl;
   cin >> music->duration;
   media.push_back(music);
 }
@@ -112,7 +111,7 @@ void newVideogame(vector<Media*> &media)
   cin >> vg->year;
   cout << "enter publisher" << endl;
   cin >> vg->publisher;
-  cout << "enter rating" << endl;
+  cout << "enter rating (1-5)" << endl;
   cin >> vg->rating;
   media.push_back(vg);
 }
@@ -124,35 +123,34 @@ void searchMedia(vector<Media*> media)
   cout << "enter title or year to search by" << endl;
   cin >> input;
   cout << "search results:" << endl;
+  bool mediafound = false;
   for(int i = 0; i < media.size(); i++)
   {
-    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0))
+    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0)) //if title or year match search term
     {
-      printMedia(media[i]);
+      media[i]->printInfo();
+      mediafound = true;
     }
   }
-}
-
-//prints out the information of a media type
-void printMedia(Media* media)
-{
-  cout << media->getTitle() << ", " << media->getYear() << ", " << endl;
+  if(mediafound == false)
+  {
+    cout << "no media found" << endl;
+  }
 }
 
 //deletes media matching title or year
 void deleteMedia(vector<Media*> &media)
 {
   char input[100];
-  vector<Media*> deletelist;
+  vector<Media*> deletelist; //media to be potentially deleted
   cout << "enter title or year of media" << endl;
   cin >> input;
   cout << "results:" << endl;
   for(int i = 0; i < media.size(); i++)
   {
-    //if title or year match search term
-    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0))
+    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0)) //if title or year match search term
     {
-      printMedia(media[i]);
+      media[i]->printInfo();
       deletelist.push_back(media[i]);
     }
   }
@@ -174,7 +172,7 @@ void deleteMedia(vector<Media*> &media)
       {
         return;
       }
-    } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0));
+    } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0)); //keep asking until user says yes or no
   }
   else
   {

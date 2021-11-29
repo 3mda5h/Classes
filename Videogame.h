@@ -10,6 +10,7 @@ class Videogame : public Media
     Videogame();
     char* getPublisher();
     char* getRating();
+    virtual void printInfo();
     char* publisher;
     char* rating;
 };

@@ -13,6 +13,7 @@ class Movie : public Media
     char* getDirector();
     char* getRating();
     char* getDuration();
+    virtual void printInfo();
     char* director;
     char* rating;
     char* duration;

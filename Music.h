@@ -13,6 +13,7 @@ class Music : public Media
     char* getPublisher();
     char* getArtist();
     char* getDuration();
+    virtual void printInfo();
     char* publisher;
     char* artist;
     char* duration;

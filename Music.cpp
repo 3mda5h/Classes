@@ -25,3 +25,8 @@ char* Music::getDuration()
 {
   return duration;
 }
+
+void Music::printInfo()
+{
+  cout << title << ", " << year << ", published by " << publisher << ", artist: " << artist << ", " << duration << endl; 
+}

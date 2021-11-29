@@ -25,3 +25,8 @@ char* Movie::getDuration()
 {
   return duration;
 }
+
+void Movie::printInfo()
+{
+  cout << title << ", " << year << ", directed by " << director << ", rated " << rating << " star(s), " << duration << " min" << endl;
+}
