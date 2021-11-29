@@ -25,7 +25,8 @@ int main()
   do
   {
     cout << "enter ADD, SEARCH, DELETE, or QUIT" << endl;
-    cin >> input;
+    //cin.getline( input;
+    cin.getline(input, 100);
     //convert input to all uppercase so it's not case sensitive
     for(int i = 0; i < strlen(input); i++)
     {
@@ -36,7 +37,7 @@ int main()
       do
       {
         cout << "enter media type (movie, music, or videogame)" << endl;
-        cin >> input;
+        cin.getline(input, 100);
         if(strcmp(input, "movie") == 0)
         {
           newMovie(media);
@@ -72,15 +73,15 @@ void newMovie(vector<Media*> &media)
 {
   Movie* movie = new Movie();
   cout << "enter movie title" << endl;
-  cin >> movie->title;
+  cin.getline(movie->title, 100);
   cout << "enter year" << endl;
-  cin >> movie->year;
+  cin.getline(movie->year, 100);
   cout << "enter director" << endl;
-  cin >> movie->director;
+  cin.getline(movie->director, 100);
   cout << "enter rating (1-5)" << endl;
-  cin >> movie->rating;
+  cin.getline(movie->rating, 100);
   cout << "enter duration (minutes)" << endl;
-  cin >> movie->duration;
+  cin.getline(movie->duration, 100);
   media.push_back(movie);
 }
 
@@ -89,15 +90,15 @@ void newMusic(vector<Media*> &media)
 {
   Music* music = new Music();
   cout << "enter music title" << endl;
-  cin >> music->title;
+  cin.getline(music->title, 100);
   cout << "enter year" << endl;
-  cin >> music->year;
+  cin.getline(music->year, 100);
   cout << "enter publisher" << endl;
-  cin >> music->publisher;
+  cin.getline(music->publisher, 100);
   cout << "enter artist" << endl;
-  cin >> music->artist;
+  cin.getline(music->artist, 100);
   cout << "enter duration (min:sec)" << endl;
-  cin >> music->duration;
+  cin.getline(music->duration, 100);
   media.push_back(music);
 }
 
@@ -106,13 +107,13 @@ void newVideogame(vector<Media*> &media)
 {
   Videogame* vg = new Videogame();
   cout << "enter videogame title" << endl;
-  cin >> vg->title;
+  cin.getline(vg->title, 100);
   cout << "enter year" << endl;
-  cin >> vg->year;
+  cin.getline(vg->year, 100);
   cout << "enter publisher" << endl;
-  cin >> vg->publisher;
+  cin.getline(vg->publisher, 100);
   cout << "enter rating (1-5)" << endl;
-  cin >> vg->rating;
+  cin.getline(vg->rating, 100);
   media.push_back(vg);
 }
 
@@ -121,7 +122,7 @@ void searchMedia(vector<Media*> media)
 {
   char input[100];
   cout << "enter title or year to search by" << endl;
-  cin >> input;
+  cin.getline(input, 100);
   cout << "search results:" << endl;
   bool mediafound = false;
   for(int i = 0; i < media.size(); i++)
@@ -144,7 +145,7 @@ void deleteMedia(vector<Media*> &media)
   char input[100];
   vector<Media*> deletelist; //media to be potentially deleted
   cout << "enter title or year of media" << endl;
-  cin >> input;
+  cin.getline(input, 100);
   cout << "results:" << endl;
   for(int i = 0; i < media.size(); i++)
   {
@@ -159,7 +160,7 @@ void deleteMedia(vector<Media*> &media)
     do
     {
       cout << "are you sure you want to delete the above media? (yes/no)" << endl;
-      cin >> input;
+      cin.getline(input, 100);
       if(strcmp(input, "yes") == 0)
       {
         for(int i = 0; i < deletelist.size(); i++)
