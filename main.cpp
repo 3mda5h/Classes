@@ -1,5 +1,5 @@
 //Classes and inheritance project - a database of videogames, movies, and music. User can add, search, and delete media. 
-//Emily MacPherson, 11/28/21
+//Emily MacPherson, 12/2/21
 
 #include <iostream>
 #include <cstring>
@@ -14,18 +14,17 @@ using namespace std;
 void newMovie(vector<Media*> &media);
 void newMusic(vector<Media*> &media);
 void newVideogame(vector<Media*> &media);
-void searchMedia(vector<Media*> media);
+void searchMedia(vector<Media*> &media);
 void deleteMedia(vector<Media*> &media);
 
 int main() 
 {
   bool running = true;
   char input[100];
-  vector<Media*> media;
+  vector<Media*> medialist;
   do
   {
     cout << "enter ADD, SEARCH, DELETE, or QUIT" << endl;
-    //cin.getline( input;
     cin.getline(input, 100);
     //convert input to all uppercase so it's not case sensitive
     for(int i = 0; i < strlen(input); i++)
@@ -40,26 +39,26 @@ int main()
         cin.getline(input, 100);
         if(strcmp(input, "movie") == 0)
         {
-          newMovie(media);
+          newMovie(medialist);
         }
         if(strcmp(input, "music") == 0)
         {
-          newMusic(media);
+          newMusic(medialist);
         }
         if(strcmp(input, "videogame") == 0)
         {
-          newVideogame(media);
+          newVideogame(medialist);
         }
       } while((strcmp(input, "movie") != 0) && (strcmp(input, "music") != 0) && (strcmp(input, "videogame") != 0)); //keeps prompting user until valid input given
       cout << "media added to database" << endl;
     }
     if(strcmp(input, "SEARCH") == 0)
     {
-      searchMedia(media);
+      searchMedia(medialist);
     }
     if(strcmp(input, "DELETE") == 0)
     {
-      deleteMedia(media);
+      deleteMedia(medialist);
     }
     if(strcmp(input, "QUIT") == 0)
     {
@@ -68,7 +67,7 @@ int main()
   } while(running == true);
 } 
 
-//creats new movie class
+//creats new movie class with info inputted by user
 void newMovie(vector<Media*> &media)
 {
   Movie* movie = new Movie();
@@ -85,7 +84,7 @@ void newMovie(vector<Media*> &media)
   media.push_back(movie);
 }
 
-//creats new music class
+//creats new music class with info inputted by user
 void newMusic(vector<Media*> &media)
 {
   Music* music = new Music();
@@ -102,7 +101,7 @@ void newMusic(vector<Media*> &media)
   media.push_back(music);
 }
 
-//creats new videogame class
+//creats new videogame class with info inputted by user
 void newVideogame(vector<Media*> &media)
 {
   Videogame* vg = new Videogame();
@@ -117,13 +116,13 @@ void newVideogame(vector<Media*> &media)
   media.push_back(vg);
 }
 
-//searchs media vector for matching title or year
-void searchMedia(vector<Media*> media)
+//searchs media vector for media with certain title or year
+void searchMedia(vector<Media*> &media)
 {
   char input[100];
   cout << "enter title or year to search by" << endl;
   cin.getline(input, 100);
-  cout << "search results:" << endl;
+  cout << "results:" << endl;
   bool mediafound = false;
   for(int i = 0; i < media.size(); i++)
   {
@@ -139,45 +138,35 @@ void searchMedia(vector<Media*> media)
   }
 }
 
-//deletes media matching title or year
+//deletes media with certain title or year
 void deleteMedia(vector<Media*> &media)
 {
   char input[100];
-  vector<Media*> deletelist; //media to be potentially deleted
-  cout << "enter title or year of media" << endl;
-  cin.getline(input, 100);
-  cout << "results:" << endl;
+  char searchterm[100];
+  cout << "enter title or year to search by" << endl;
+  cin.getline(searchterm, 100);
+  bool mediafound = false;
   for(int i = 0; i < media.size(); i++)
   {
-    if((strcmp(media[i]->getTitle(), input) == 0) || (strcmp(media[i]->getYear(), input) == 0)) //if title or year match search term
+    if((strcmp(media[i]->getTitle(), searchterm) == 0) || (strcmp(media[i]->getYear(), searchterm) == 0)) //if title or year match search term
     {
       media[i]->printInfo();
-      deletelist.push_back(media[i]);
+      mediafound = true;
+      do
+      { 
+        cout << "do you want to delete the above media? (yes/no)" << endl;
+        cin.getline(input, 100);
+        if(strcmp(input, "yes") == 0)
+        {
+          delete media[i];
+          media.erase(media.begin() + i);
+          i--; //to fix index offset created by removing from the vector
+        }
+      } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0)); //keep asking until user says yes or no
     }
   }
-  if(deletelist.size() > 0) //if delete list is not empty
-  {
-    do
-    {
-      cout << "are you sure you want to delete the above media? (yes/no)" << endl;
-      cin.getline(input, 100);
-      if(strcmp(input, "yes") == 0)
-      {
-        for(int i = 0; i < deletelist.size(); i++)
-        {
-          delete deletelist[i];
-        }
-        cout << "media deleted" << endl;
-      }
-      if(strcmp(input, "no") == 0)
-      {
-        return;
-      }
-    } while((strcmp(input, "yes") != 0) && (strcmp(input, "no") != 0)); //keep asking until user says yes or no
-  }
-  else
+  if(mediafound == false)
   {
     cout << "no media found" << endl;
-    return;
   }
 }

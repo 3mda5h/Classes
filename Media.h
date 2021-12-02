@@ -4,14 +4,14 @@
 #include <iostream>
 using namespace std;
 
-class Media
+class Media 
 {
   public:
-    Media();
-    ~Media();
-    char* getTitle();
+    Media(); //constructor
+    ~Media(); //deconstructor
+    char* getTitle(); 
     char* getYear();
-    virtual void printInfo();
+    virtual void printInfo(); //prints all fields
     char* title;
     char* year;
 };

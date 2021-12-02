@@ -1,4 +1,4 @@
-//title, director, year, duration, rating
+//movie class contains fields: title, director, year, duration, rating
 #include <iostream>
 #include "Movie.h"
 
@@ -7,8 +7,15 @@ using namespace std;
 Movie::Movie()
 {
   director = new char[100];
-  rating = new char[100]; //out of 5?
-  duration = new char[100]; //in minutes 
+  rating = new char[100]; 
+  duration = new char[100];
+}
+
+Movie::~Movie()
+{
+  delete[] director;
+  delete[] rating;
+  delete[] duration; 
 }
 
 char* Movie::getDirector()
@@ -26,6 +33,7 @@ char* Movie::getDuration()
   return duration;
 }
 
+//prints all feilds
 void Movie::printInfo()
 {
   cout << title << ", " << year << ", directed by " << director << ", rated " << rating << " star(s), " << duration << " min" << endl;

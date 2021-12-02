@@ -1,4 +1,4 @@
-//title, artist, year, duration, publisher.
+//music contains fields: title, artist, year, duration, publisher.
 #include <iostream>
 #include "Music.h"
 
@@ -8,9 +8,15 @@ Music::Music()
 {
   publisher = new char[100];
   artist = new char[100];
-  duration = new char[100]; //min:sec 
+  duration = new char[100];
 }
-  
+
+Music::~Music()
+{
+  delete[] publisher;
+  delete[] artist;
+  delete[] duration;
+}
 char* Music::getPublisher()
 {
   return publisher; 
@@ -26,6 +32,7 @@ char* Music::getDuration()
   return duration;
 }
 
+//prints all fields
 void Music::printInfo()
 {
   cout << title << ", " << year << ", published by " << publisher << ", artist: " << artist << ", " << duration << endl; 

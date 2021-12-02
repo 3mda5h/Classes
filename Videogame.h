@@ -7,10 +7,11 @@
 class Videogame : public Media
 {
   public:
-    Videogame();
+    Videogame(); //constructor
+    ~Videogame(); //deconstructor
     char* getPublisher();
     char* getRating();
-    virtual void printInfo();
+    virtual void printInfo(); //print all fields 
     char* publisher;
     char* rating;
 };

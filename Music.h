@@ -9,11 +9,12 @@ using namespace std;
 class Music : public Media
 {
   public:
-    Music();
+    Music(); //constructor
+    ~Music(); //deconstructor
     char* getPublisher();
     char* getArtist();
     char* getDuration();
-    virtual void printInfo();
+    virtual void printInfo(); //prints all fields
     char* publisher;
     char* artist;
     char* duration;

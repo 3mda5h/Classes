@@ -24,7 +24,7 @@ char* Media::getYear()
   return year;
 }
 
-void Media::printInfo()
+void Media::printInfo() //print all fields
 {
   cout << title << ", " << year << endl;
 }
